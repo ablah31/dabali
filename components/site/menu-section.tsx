@@ -28,6 +28,7 @@ export function MenuSection() {
     () => menuItems.filter((item) => item.category === activeCategory),
     [activeCategory],
   );
+  const featuredItem = filteredItems[0];
 
   useGSAP(
     () => {
@@ -52,7 +53,11 @@ export function MenuSection() {
   );
 
   return (
-    <AnimatedSection id="carte" className="bg-white px-5 py-16 sm:px-6 md:py-24" delay={0.15}>
+    <AnimatedSection
+      id="carte"
+      className="bg-white px-5 py-16 sm:px-6 md:py-24"
+      delay={0.15}
+    >
       <div className="mx-auto max-w-6xl">
         <SectionLabel>La Carte</SectionLabel>
         <h2 className="mt-3 max-w-xl font-heading text-3xl font-bold text-balance text-espresso sm:text-4xl lg:text-5xl">
@@ -90,23 +95,28 @@ export function MenuSection() {
         <div className="mt-5 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="overflow-hidden rounded-[2rem] border border-border bg-cream shadow-sm lg:sticky lg:top-24">
             <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]">
-              <Image
-                src="/plat_africain_mix.png"
-                alt="Grand plateau africain avec riz, plantains, patates douces, viande grillée et sauces"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 460px"
-              />
+              {featuredItem ? (
+                <Image
+                  src={featuredItem.image}
+                  alt={featuredItem.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 460px"
+                />
+              ) : null}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-espresso/80 via-transparent to-transparent"
                 aria-hidden="true"
               />
               <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-6">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  À partager
+                  Sélection Dabali
                 </p>
                 <p className="mt-1 font-heading text-2xl font-semibold sm:text-3xl">
-                  Plateaux généreux, sauces maison
+                  {featuredItem?.name}
+                </p>
+                <p className="mt-2 inline-flex rounded-full bg-terracotta px-4 py-1 font-heading text-xl font-bold">
+                  {featuredItem?.price}
                 </p>
               </div>
             </div>
@@ -117,28 +127,41 @@ export function MenuSection() {
               {filteredItems.map((item) => (
                 <li key={item.id}>
                   <Card className="border-border/60 shadow-sm transition-shadow duration-300 hover:shadow-lg">
-                    <CardContent className="flex items-start justify-between gap-3 pt-0 sm:gap-5">
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="font-heading text-lg font-semibold text-espresso sm:text-xl">
-                            {item.name}
-                          </h3>
-                          {item.popular ? (
-                            <Badge
-                              variant="outline"
-                              className="border-terracotta/30 bg-terracotta/10 text-[0.65rem] font-bold uppercase tracking-wider text-terracotta"
-                            >
-                              Populaire
-                            </Badge>
-                          ) : null}
+                    <CardContent className="grid grid-cols-[5.5rem_1fr] gap-3 pt-0 sm:grid-cols-[7rem_1fr] sm:gap-5">
+                      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-cream">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                          sizes="112px"
+                        />
+                      </div>
+
+                      <div className="flex min-w-0 flex-col justify-between gap-3">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="font-heading text-lg font-semibold leading-tight text-espresso sm:text-xl">
+                              {item.name}
+                            </h3>
+                            {item.popular ? (
+                              <Badge
+                                variant="outline"
+                                className="border-terracotta/30 bg-terracotta/10 text-[0.65rem] font-bold uppercase tracking-wider text-terracotta"
+                              >
+                                Populaire
+                              </Badge>
+                            ) : null}
+                          </div>
+                          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground sm:line-clamp-none">
+                            {item.description}
+                          </p>
                         </div>
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {item.description}
+
+                        <p className="self-start rounded-full bg-terracotta px-3 py-1 font-heading text-lg font-bold text-white sm:text-xl">
+                          {item.price}
                         </p>
                       </div>
-                      <p className="shrink-0 font-heading text-xl font-bold text-terracotta sm:text-2xl">
-                        {item.price}
-                      </p>
                     </CardContent>
                   </Card>
                 </li>
