@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dabali d'Afrique",
     description:
-      "Les saveurs de l'Afrique, à Toulouse. Restaurant, traiteur et à emporter.",
+      "Les délices de Koné. Restaurant, traiteur et à emporter.",
     locale: "fr_FR",
     type: "website",
   },

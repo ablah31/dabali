@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Dabali d'Afrique",
   shortName: "Dabali",
-  tagline: "Les saveurs de l'Afrique, à Toulouse.",
+  tagline: "Les délices de Koné",
   description:
     "Restaurant africain et traiteur à Toulouse. Cuisine ouest-africaine, plats à emporter et service traiteur pour vos événements.",
   phone: "05 61 00 00 00",
