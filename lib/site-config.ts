@@ -4,13 +4,13 @@ export const siteConfig = {
   tagline: "Les délices de Koné",
   description:
     "Restaurant africain et traiteur à Toulouse. Cuisine ouest-africaine, plats à emporter et service traiteur pour vos événements.",
-  phone: "05 61 00 00 00",
-  phoneHref: "tel:+33561000000",
+  phone: "07 53 93 16 27",
+  phoneHref: "tel:+33753931627",
   address: "71 avenue de Muret, Toulouse",
   hours: [
-    "Mardi – Samedi : 12h – 14h30 & 19h – 22h30",
-    "Dimanche : 12h – 15h",
-    "Fermé le lundi",
+    "Lundi – Jeudi : 12h – 23h30",
+    "Vendredi – Samedi : 12h – 00h",
+    "Dimanche : 12h – 23h30",
   ],
   nav: [
     { label: "Accueil", href: "#accueil" },
